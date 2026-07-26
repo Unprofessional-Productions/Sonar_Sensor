@@ -1,3 +1,8 @@
+/*
+*@file Sonar_Sensor_Java_Code
+*@author Francesco Grigoli
+*@Version: 0.1
+*/
 
 import processing.serial.*;      
 import processing.sound.*;
@@ -11,15 +16,23 @@ String data="";
 
 int angle, dist;
 
+
+/**
+* @brief: sets up basic necesities for the code to run
+*/
 void  setup() {
    size (2000,800);  
-   myPort = new Serial(this,"COM6", 9600);                    
+   myPort = new Serial(this,"COM6", 9600);   //Change to your Com port
    myPort.bufferUntil('.');  
    background(0);
    sfile = new SoundFile(this, "sonar-ping.mp3");
    sfile.loop();
 }
 
+
+/**
+* @brief: Draw and run Radar
+*/
 void  draw() {
       fill(0,5);              
       noStroke();
@@ -34,6 +47,11 @@ void  draw() {
 }
 
 
+
+
+/**
+* @brief: Collects Data from Sensor
+*/
 void serialEvent (Serial myPort) {                                                    
       data = myPort.readStringUntil('.');
       data = data.substring(0,data.length()-1);
@@ -46,6 +64,10 @@ void serialEvent (Serial myPort) {
      
 }
 
+
+/**
+* @brief: Draw radar layout
+*/
 void  drawRadar(){
     pushMatrix();
     noFill();
@@ -72,6 +94,11 @@ void  drawRadar(){
     popMatrix();
 }
 
+
+
+/**
+* @brief: draws the sweeringg line in the radar
+*/
 void  drawLine() {
   pushMatrix();
   strokeWeight(9);
@@ -81,6 +108,10 @@ void  drawLine() {
   popMatrix();
 }
 
+
+/**
+* @brief: Draws where the object is detected
+*/
 void drawObject() {
     pushMatrix();    
     strokeWeight(9);
@@ -96,6 +127,10 @@ void drawObject() {
     popMatrix();
 }
 
+
+/**
+* @brief: 
+*/
 void drawText(){
     pushMatrix();
     fill(100,200,255);
