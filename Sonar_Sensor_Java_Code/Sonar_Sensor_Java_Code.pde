@@ -129,7 +129,7 @@ void drawObject() {
 
 
 /**
-* @brief: 
+* @brief: wrights text in code
 */
 void drawText(){
     pushMatrix();
